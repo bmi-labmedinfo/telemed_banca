@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractConto implements Conto {
-
+    private static final String SEP = ";";
     private double saldo;
     protected ContoType type;
     private String cf;
@@ -23,6 +23,11 @@ public abstract class AbstractConto implements Conto {
 
     @Override
     public boolean addAccountable(Accountable acc) {
+        /* note: implementing this here allows for both conto deposito and corrente to have accountables that "withraw" money
+        this is probably undesirable....homework: think about ho to prevent this
+        (HINT for resolution: move 
+        */
+        
         return accountables.add(acc);
     }
 
@@ -38,7 +43,7 @@ public abstract class AbstractConto implements Conto {
     }
 
     protected boolean updateSaldo(double amount) {
-         if (amount >= 0) {
+        if (amount >= 0) {
             return deposito(amount);
         } else {
             return prelievo(-amount);
@@ -54,10 +59,9 @@ public abstract class AbstractConto implements Conto {
         }
     }
 
-
     private boolean deposito(double amount) {
         if (amount >= 0) {
-            updateSaldo(amount);
+            this.saldo += amount;
             return true;
         } else {
             return false;
@@ -75,6 +79,11 @@ public abstract class AbstractConto implements Conto {
 
     public ContoType getType() {
         return type;
+    }
+
+    public String printDetails() {
+        return "iban: " + iban + SEP + "\tintestatario: " + cf
+                + SEP + "\tsaldo: " + saldo;
     }
 
 }

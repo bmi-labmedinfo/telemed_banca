@@ -85,5 +85,17 @@ public class Banca {
     private String genIban() {
         return nome+conti.size();
     }
+    
+        public String toString() {
+        String s = "\nBanca " + nome + "\n";
+        s += "------------\n";
+        s += (conti==null?0:conti.size()) + " conti attivi\n";
+        s += "------------\n";
+        for (Conto c:conti.values()) {
+                s += c.printDetails() + "\n";
+        }
+        s += "------------\n";
+        return s + "\n";
+    }
 
 }

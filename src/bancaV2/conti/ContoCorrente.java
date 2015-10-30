@@ -12,9 +12,4 @@ public class ContoCorrente extends AbstractConto {
     public boolean operazione(double amount) {
         return updateSaldo(amount);
     }
-
-    @Override
-    public boolean fineMese() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

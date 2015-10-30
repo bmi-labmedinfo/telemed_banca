@@ -11,5 +11,7 @@ public interface Conto {
 	boolean fineMese();
 
 	String getIban();
+        
+        String printDetails();
 
 }
