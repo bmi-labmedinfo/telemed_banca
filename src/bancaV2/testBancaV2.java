@@ -22,7 +22,7 @@ public class testBancaV2 {
         b.operazione("UBI1", 2000);
         b.operazione("UBI1", -30);
         b.operazione("UBI2", 200);
-        b.logIn("UBI2", "changeme");
+//        b.logIn("UBI2", "changeme");
         b.operazione("UBI2", 2500);
         b.operazione("UBI2", -100);
         b.operazione("UBI3", 5000);

@@ -26,8 +26,10 @@ public class Banca {
                 break;
             case WEB:
                 c = new ContoCorrenteWeb(0.0, genIban(), cf);
+                break;
             case DEPOSITO:
                 c = new ContoDeposito(0.0, genIban(), cf);
+                break;
         }
         conti.put(c.getIban(), c);
         return c;
