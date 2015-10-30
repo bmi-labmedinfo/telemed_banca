@@ -5,11 +5,14 @@ public class ContoCorrenteWeb extends ContoCorrente {
 
     private boolean loggedIn;
     private String password;
+    private boolean firstlogin;
 
     public ContoCorrenteWeb(double saldo, String iban, String cf) {
         super(saldo, iban, cf);
         this.type=ContoType.WEB;
         this.password = "changeme";
+        this.loggedIn=false;
+        this.firstlogin=true;
     }
 
     @Override
@@ -22,8 +25,9 @@ public class ContoCorrenteWeb extends ContoCorrente {
     }
 
     public boolean setPassword(String oldPassword, String newPassword) {
-        if (oldPassword.equals(this.password)) {
+        if (firstlogin && logIn(password)) {
             this.password = newPassword;
+            this.loggedIn = false;
             return true;
         } else {
             return false;
@@ -37,6 +41,7 @@ public class ContoCorrenteWeb extends ContoCorrente {
     public boolean logIn(String password) {
         if (password.equals(this.password)) {
             this.loggedIn = true;
+            this.firstlogin=false;
         } else {
             this.loggedIn = false;
         }

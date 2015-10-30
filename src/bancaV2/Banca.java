@@ -53,6 +53,15 @@ public class Banca {
         Conto c = conti.get(iban);
         return c.operazione(amount);
     }
+    
+    public boolean changePass(String iban, String oldPass, String newPass) {
+        boolean res = false;
+        Conto c = conti.get(iban);
+        if (c instanceof ContoCorrenteWeb){
+            res = ((ContoCorrenteWeb)c).setPassword(oldPass, newPass);
+        }
+        return res;
+    }
 
     /**
      *
