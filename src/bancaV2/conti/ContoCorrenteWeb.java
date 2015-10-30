@@ -1,6 +1,5 @@
 package bancaV2.conti;
 
-
 public class ContoCorrenteWeb extends ContoCorrente {
 
     private boolean loggedIn;
@@ -9,10 +8,10 @@ public class ContoCorrenteWeb extends ContoCorrente {
 
     public ContoCorrenteWeb(double saldo, String iban, String cf) {
         super(saldo, iban, cf);
-        this.type=ContoType.WEB;
+        this.type = ContoType.WEB;
         this.password = "changeme";
-        this.loggedIn=false;
-        this.firstlogin=true;
+        this.loggedIn = false;
+        this.firstlogin = true;
     }
 
     @Override
@@ -25,8 +24,12 @@ public class ContoCorrenteWeb extends ContoCorrente {
     }
 
     public boolean setPassword(String oldPassword, String newPassword) {
-        if (firstlogin && logIn(password)) {
+        /*
+        note that you can only change password one time in the life of one ContoCorrenteWeb object!
+         */
+        if (firstlogin && oldPassword.equals(this.password)) {
             this.password = newPassword;
+            this.firstlogin = false;
             this.loggedIn = false;
             return true;
         } else {
@@ -39,9 +42,13 @@ public class ContoCorrenteWeb extends ContoCorrente {
      * @param password
      */
     public boolean logIn(String password) {
-        if (password.equals(this.password)) {
+        /*
+         with this implementation of login you are forced to change password first
+         after changing pass you can log in normally
+         */
+        if (password.equals(this.password) && !firstlogin) {
             this.loggedIn = true;
-            this.firstlogin=false;
+            this.firstlogin = false;
         } else {
             this.loggedIn = false;
         }

@@ -23,9 +23,10 @@ public class testBancaV2 {
         b.operazione("UBI1", 2000);
         b.operazione("UBI1", -30);
         b.operazione("UBI2", 200); //fails since not logged in
-//        b.logIn("UBI2", "changeme");
+        b.logIn("UBI2", "changeme"); //fails! you cannot log in without immediately change the password (valid for first login only)
         b.changePass("UBI2", "changeme", "newpass");//you have to change your pass as first operation;
-        b.logIn("UBI2", "newpass");
+        b.changePass("UBI2", "newpass", "test");//fails! cannot change it more than once!
+        b.logIn("UBI2", "newpass");//now succeeds
         b.operazione("UBI2", 2500);
         b.operazione("UBI2", -100);
         b.operazione("UBI3", 5000);
