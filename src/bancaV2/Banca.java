@@ -1,7 +1,6 @@
 package bancaV2;
 
 
-import bancaV2.conti.ContoType;
 import bancaV2.conti.ContoDeposito;
 import bancaV2.conti.ContoCorrenteWeb;
 import bancaV2.conti.ContoCorrente;
@@ -22,13 +21,13 @@ public class Banca {
         Conto c = null;
         switch (type) {
             case CORRENTE:
-                c = new ContoCorrente(0.0, genIban(), cf);
+                c = new ContoCorrente(genIban(), cf, 0.0);
                 break;
             case WEB:
-                c = new ContoCorrenteWeb(0.0, genIban(), cf);
+                c = new ContoCorrenteWeb(genIban(), cf, 0.0);
                 break;
             case DEPOSITO:
-                c = new ContoDeposito(0.0, genIban(), cf);
+                c = new ContoDeposito(genIban(), cf, 0.0);
                 break;
         }
         conti.put(c.getIban(), c);

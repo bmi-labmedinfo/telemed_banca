@@ -1,4 +1,4 @@
-package bancaV2.conti;
+package bancaV2;
 
 public enum ContoType {
 

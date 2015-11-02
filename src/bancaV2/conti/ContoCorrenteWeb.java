@@ -1,14 +1,15 @@
 package bancaV2.conti;
 
+import bancaV2.ContoType;
+
 public class ContoCorrenteWeb extends ContoCorrente {
 
     private boolean loggedIn;
     private String password;
     private boolean firstlogin;
 
-    public ContoCorrenteWeb(double saldo, String iban, String cf) {
-        super(saldo, iban, cf);
-        this.type = ContoType.WEB;
+    public ContoCorrenteWeb(String iban, String cf, double saldo) {
+        super(iban, cf, saldo);
         this.password = "changeme";
         this.loggedIn = false;
         this.firstlogin = true;

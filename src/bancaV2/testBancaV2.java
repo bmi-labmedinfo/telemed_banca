@@ -4,7 +4,6 @@ package bancaV2;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import bancaV2.conti.ContoType;
 
 /**
  *
@@ -40,6 +39,7 @@ public class testBancaV2 {
         b.changePass("UBI2", "changeme", "newpass");
         b.addAccountable("UBI2", abb2);
         b.addAccountable("UBI3", s1);
+//        b.addAccountable("UBI3", abb2); //allows adding abb2 but finemese() does not subtract money since conto is Deposito. See note in AbstractConto.addAccountable()
         b.fineMese();
         System.out.println("FINE MESE TRIGGERED");
         System.out.println(b);

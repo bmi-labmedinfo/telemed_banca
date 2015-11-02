@@ -1,5 +1,6 @@
 package bancaV2.conti;
 
+import bancaV2.ContoType;
 import bancaV2.Accountable;
 import bancaV2.Conto;
 import java.util.ArrayList;
@@ -8,13 +9,11 @@ import java.util.List;
 public abstract class AbstractConto implements Conto {
     private static final String SEP = ";";
     private double saldo;
-    protected ContoType type;
     private String cf;
     private String iban;
     private List<Accountable> accountables;
 
-    public AbstractConto(ContoType type, String iban, String cf, double saldo) {
-        this.type = type;
+    public AbstractConto(String iban, String cf, double saldo) {
         this.iban = iban;
         this.cf = cf;
         this.saldo = saldo;
@@ -25,9 +24,8 @@ public abstract class AbstractConto implements Conto {
     public boolean addAccountable(Accountable acc) {
         /* note: implementing this here allows for both conto deposito and corrente to have accountables that "withraw" money
         this is probably undesirable....homework: think about ho to prevent this
-        (HINT for resolution: move 
+        (HINT for solution: override this impl in ContoDeposito)
         */
-        
         return accountables.add(acc);
     }
 
@@ -75,10 +73,6 @@ public abstract class AbstractConto implements Conto {
     @Override
     public double getSaldo() {
         return saldo;
-    }
-
-    public ContoType getType() {
-        return type;
     }
 
     public String printDetails() {
