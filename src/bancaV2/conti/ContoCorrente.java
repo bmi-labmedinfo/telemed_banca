@@ -8,9 +8,4 @@ public class ContoCorrente extends AbstractConto {
     public ContoCorrente(String iban, String cf, double saldo) {
         super(iban, cf, 0.0);
     }
-
-    @Override
-    public boolean operazione(double amount) {
-        return updateSaldo(amount);
-    }
 }

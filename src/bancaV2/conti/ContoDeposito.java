@@ -11,10 +11,11 @@ public class ContoDeposito extends AbstractConto {
 
     @Override
     public boolean operazione(double amount) {
-        if (amount >= 0) {
-            return updateSaldo(amount);
+        if (amount > 0) {
+            return super.operazione(amount);
         } else {
-            return false; //cannot pull money out of a conto which is "deposito"
+            return false;
         }
     }
+
 }

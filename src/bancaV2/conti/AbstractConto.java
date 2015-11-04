@@ -40,16 +40,17 @@ public abstract class AbstractConto implements Conto {
         return true;
     }
 
-    protected boolean updateSaldo(double amount) {
-        if (amount >= 0) {
+    @Override
+    public boolean operazione(double amount) {
+       if (amount >= 0) {
             return deposito(amount);
         } else {
             return prelievo(-amount);
         }
     }
-
+    
     private boolean prelievo(double amount) {
-        if (amount >= 0 && amount <= saldo) {
+        if (amount <= saldo) {
             this.saldo -= amount;
             return true;
         } else {
@@ -58,12 +59,8 @@ public abstract class AbstractConto implements Conto {
     }
 
     private boolean deposito(double amount) {
-        if (amount >= 0) {
             this.saldo += amount;
             return true;
-        } else {
-            return false;
-        }
     }
 
     public String getIban() {
