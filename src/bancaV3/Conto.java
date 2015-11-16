@@ -1,4 +1,7 @@
-package bancaV2;
+package bancaV3;
+
+import bancaV3.accountables.Accountable;
+import bancaV3.exceptions.InvalidOperationException;
 
 public interface Conto {
 

@@ -1,8 +1,8 @@
-package bancaV2.conti;
+package bancaV3.conti;
 
-import bancaV2.ContoType;
-import bancaV2.Accountable;
-import bancaV2.Conto;
+import bancaV3.exceptions.InvalidOperationException;
+import bancaV3.accountables.Accountable;
+import bancaV3.Conto;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class ContoCorrente implements Conto {
     }
 
     @Override
-    public boolean operazione(double amount) {
+    public boolean operazione(double amount){
        if (amount >= 0) {
             return deposito(amount);
         } else {
@@ -54,7 +54,7 @@ public class ContoCorrente implements Conto {
             this.saldo -= amount;
             return true;
         } else {
-            return false;
+            throw new InvalidOperationException("Conto: "+this.getIban()+" not allowed operation");
         }
     }
 

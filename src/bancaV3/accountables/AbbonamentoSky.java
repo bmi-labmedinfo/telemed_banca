@@ -1,4 +1,4 @@
-package bancaV2;
+package bancaV3.accountables;
 
 public class AbbonamentoSky implements Accountable{
 

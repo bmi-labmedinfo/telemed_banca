@@ -1,4 +1,7 @@
-package bancaV2;
+package bancaV3;
+
+import bancaV3.accountables.AbbonamentoSky;
+import bancaV3.accountables.Stipendio;
 
 /*
  * To change this template, choose Tools | Templates
@@ -9,7 +12,7 @@ package bancaV2;
  *
  * @author cristiana
  */
-public class testBancaV2 {
+public class TestBancaV3 {
 
     public static void main(String[] args) {
         Banca b = new Banca("UBI");
@@ -25,13 +28,15 @@ public class testBancaV2 {
         b.logIn("UBI2", "changeme"); //fails! you cannot log in without immediately change the password (valid for first login only)
         b.changePass("UBI2", "changeme", "newpass");//you have to change your pass as first operation;
         b.changePass("UBI2", "newpass", "test");//fails! cannot change it more than once!
+       
+        b.logIn("UBI2", "wrongpass");//fails!  the pass is not correct
         b.logIn("UBI2", "newpass");//now succeeds
         b.operazione("UBI2", 2500);
         b.operazione("UBI2", -100);
         b.operazione("UBI3", 5000);
         b.operazione("UBI3", -1000); //fails since it's deposit
         System.out.println(b);
-
+        b.operazione("aaa", 100);
         Stipendio s1 = new Stipendio(1300);
         AbbonamentoSky abb1 = new AbbonamentoSky(true, true, true);
         AbbonamentoSky abb2 = new AbbonamentoSky(true, false, false);
@@ -39,7 +44,7 @@ public class testBancaV2 {
         b.changePass("UBI2", "changeme", "newpass");
         b.addAccountable("UBI2", abb2);
         b.addAccountable("UBI3", s1);
-//        b.addAccountable("UBI3", abb2); //allows adding abb2 but finemese() does not subtract money since conto is Deposito. See note in AbstractConto.addAccountable()
+        b.addAccountable("UBI3", abb2); //allows adding abb2 but finemese() does not subtract money since conto is Deposito. See note in AbstractConto.addAccountable()
         b.fineMese();
         System.out.println("FINE MESE TRIGGERED");
         System.out.println(b);
