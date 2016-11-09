@@ -56,12 +56,7 @@ public class Banca {
     public boolean operazione(String iban, double amount) {
         Conto c = null;
         try {
-            if (!conti.containsKey(iban)) {
-                throw new InvalidIbanException("not valid");
-            } else {
-                c = get(iban);
-            }
-
+            c = get(iban);
             return c.operazione(amount);
         } catch (InvalidOperationException | InvalidIbanException e) {
             System.out.println("Conto " + iban + ": " + e.getMessage());
@@ -95,11 +90,11 @@ public class Banca {
      */
     public boolean addAccountable(String iban, Accountable acc) {
         Conto c;
-        try{
-        c = get(iban);
-        return c.addAccountable(acc);}
-        catch(InvalidIbanException | InvalidOperationException e){
-            System.out.println("Conto "+iban+": "+e.getMessage());
+        try {
+            c = get(iban);
+            return c.addAccountable(acc);
+        } catch (InvalidIbanException | InvalidOperationException e) {
+            System.out.println("Conto " + iban + ": " + e.getMessage());
         }
         return true;
     }
@@ -121,16 +116,15 @@ public class Banca {
                 if (c instanceof ContoCorrenteWeb) {
                     res = ((ContoCorrenteWeb) c).logIn(password);
                 }
-                attempt=3;
                 return res;
             } catch (InvalidIbanException | InvalidOperationException e) {
                 System.out.println("Conto " + iban + ": " + e.getMessage());
-                attempt=3;
+                return res;
             } catch (IncorrectPasswordException e) {
                 System.out.println("Insert the password: ");
                 Scanner in = new Scanner(System.in);
-                password=in.nextLine();
-                
+                password = in.nextLine();
+
             }
         }
         return false;
